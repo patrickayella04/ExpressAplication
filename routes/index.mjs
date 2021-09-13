@@ -7,7 +7,14 @@
 // });
 
 // module.exports = router;
+/* 
+BELOW : 
 
+The automatically generated code above has been restructured below so the Express package can be 
+imported and the ROUTER object can then be exported. Adding ROUTER functions are done in the same 
+way wether they are a CommonJS or an ES6 module. The ROUTER callback funciton above has been made 
+into an async function because it is async code that will be used from here on out. 
+*/
 import { defualt as express } from "express";
 export const router = express.Router();
 
@@ -21,9 +28,33 @@ router.get("/", async (req, res, next) => {
 The blank application created by the Express generator (npx express-generator@4.x --view=hbs --git .)
 provides two aspects of the MVC:
 
-(Model, View, and Controller - The MVC pattern is widely used and involves three main architectural pieces. The Controller accepts inputs or requests from the user, converting that into commands sent to the model. The Model contains the data, logic, and rules by which the application operates. The Veiw is used to present results to the user.)
+(Model, View, and Controller - The MVC pattern is widely used and involves three main architectural pieces. 
+The Controller accepts inputs or requests from the user, converting that into commands sent to the model. 
+The Model contains the data, logic, and rules by which the application operates. The Veiw is used to present 
+results to the user.)
 
 1. The Views directory contains template files, constrolling the display portion, corresponding to the view. 
 
-2. The Routes directory contains code implementing the URLs recognized by the application and coordinates the data mainipulation required to generate the response to each URL. This corresponds to the controller. 
+2. The Routes directory contains code implementing the URLs recognized by the application and coordinates 
+the data mainipulation required to generate the response to each URL. This corresponds to the controller. 
+
+  THE APPROACH TO THIS APLLICATIONS MODEL OF THE MVC THROUGH THE USE OF API'S
+
+The approach used is to create a MODELS directory as a sibling of the VEIWS and ROUTS directories. The MODELS 
+directory will hold modules to handle data storage and other code that might be called BUSINESS LOGIC. The API
+ of the modules in the MODELS directory will provide functions to create, read, update, or delete data items 
+ -- a CREATE, READ, UPDATE, and  DELETE/DESTROY (CRUD) model - and other functions necesarry for the veiw code 
+to do its thing. 
+
+  CONCEPT OF THIS NOTES APPLICATION
+
+  The CRUD MODEL includes the four basic operations of persistent data storage. This NOTES application is structured 
+  as a CRUD application to demonstrate the implementation of  each of these operations. 
+
+  Functions named CREATE, READ, UPDATE, and DESTROY will be used to implement each of the basic operations. 
+  (DESTROY verb is being used, rather than DELETE, because delete )
+
+  We use CROSS-ENV in start for package.json and install the newst version of cross-env from npm install -g cross-env
+
+  FACT SIDE NOTE: The simplest way for a module to be recognized as an ES6 module is to use the .mjs extension. 
 */
