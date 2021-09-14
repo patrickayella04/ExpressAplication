@@ -67,3 +67,45 @@ import {
 
 import { router as indexRouter } from "./routes/index.mjs";
 // import { router as notesRouter } from './routes/notes.mjs
+
+// EXPRESS APPLICAION INITIALIZED BELOW - Instead of inline functions these functions below are pushed into appsupport.mjs.
+
+// The app and port objects are exported in case some other code in the application needs those values.
+
+export const app = express();
+
+// view engine setup
+app.set("views", path.join(__dirname, "veiws"));
+app.set("view engine", "hbs");
+hbs.registerPartials(path.join(__dirname, "partials"));
+
+// uncomment after placing your favicon in /public
+// app.use(favicon(path.join(__dirname, 'public', 'favicaon.ico')));
+app.use(logger("dev"));
+app.use(bodyParser.json());
+app.use(bodyParser.urlenconded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public")));
+
+// Router functions lists
+app.use("/", indexRouter);
+// app.use('/notes', notesRouter);
+
+// error handlers
+// catch 404 and forward to error handler
+app.use(handle404);
+app.use(basicErrorHandler);
+
+export const port = normalizePort(process.env.PORT || "3000");
+app.set("port", port);
+
+// This section of code creates and configures the Express application instance. To make it a complete running server the following code is needed below:
+
+export const server = http.createServer(app);
+
+server.listen(port);
+server.on("error", onError);
+server.on("listening", onListening);
+
+// This section of code above wraps the Express application in an HTTP server and gets it listening to HTTP requests. The server object is also exported in case
+// other code wants to access it.
